@@ -10,4 +10,4 @@
    so the code and the caption can never disagree.
    ============================================================ */
 
-const SITE_URL = "https://example.com/halo";
+const SITE_URL = "https://s1las131009.github.io/halo/";
