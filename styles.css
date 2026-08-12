@@ -1,0 +1,422 @@
+/* ============================================================
+   Halo — design tokens
+   Change a colour here and it changes everywhere.
+
+   Gradients are used in exactly two places: the logo mark, and the
+   italic accents in display headings. Everything else is a flat
+   colour on purpose — keep it that way.
+   ============================================================ */
+:root{
+  /* brand */
+  --blue:#2547D6;
+  --violet:#7B3FC9;
+  --coral:#C0453F;
+  --gold:#B87D0F;
+  /* the display-italic sweep, and its brighter twin for dark panels */
+  --grad: linear-gradient(100deg, var(--blue), var(--violet) 40%, var(--coral) 70%, var(--gold));
+  --grad-lit: linear-gradient(100deg, #6C93FF, #A98CFF 38%, #FF8A6E 70%, #FFC24B);
+
+  /* surfaces — warm paper */
+  --bg:#EFE9DF;
+  --bg-alt:#E8E1D3;
+  --card:#F7F3EB;
+  --line:rgba(30,25,16,.14);
+
+  /* surfaces — the dark ones: phone screens and the closing panel */
+  --dark:#1C1813;
+  --dark-line:rgba(255,255,255,.14);
+  --on-dark:#F6F3EE;
+  --on-dark-2:#B9B1A3;
+
+  /* text */
+  --ink:#17140F;
+  --ink-2:#5B554A;
+  --ink-3:#8B8477;
+
+  /* signal */
+  --risk:#C0453F;
+  --safe:#3FA76D;
+
+  /* scale — 4pt grid */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
+  --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+
+  /* corners — small and squared off, not pills */
+  --r-xs:4px; --r-sm:8px; --r-md:10px; --r-lg:14px;
+
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+
+  --wrap:1120px;
+  /* left edge of page content, identical for .wrap, the nav and the hero */
+  --gutter:max(var(--s5), calc((100vw - var(--wrap)) / 2 + var(--s5)));
+}
+
+/* ============================================================
+   base
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth; scroll-padding-top:76px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+h1,h2,h3,h4,h5{margin:0; font-weight:600; line-height:1.15}
+p{margin:0}
+ul,ol{margin:0; padding:0; list-style:none}
+
+.wrap{width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:var(--s5)}
+.muted{color:var(--ink-2)}
+.small{font-size:14px}
+.center{text-align:center}
+em{font-family:var(--serif); font-style:italic}
+
+.skip{position:absolute; left:-9999px}
+.skip:focus{left:var(--s4); top:var(--s4); z-index:99; background:var(--card);
+  padding:var(--s3) var(--s4); border-radius:var(--r-sm)}
+
+:focus-visible{outline:2px solid var(--blue); outline-offset:3px; border-radius:var(--r-xs)}
+
+/* gradient text — one of the two sanctioned gradients */
+.display em,.h2 em,.band-text em,.quote em{
+  background:var(--grad);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+}
+
+/* ============================================================
+   nav
+   ============================================================ */
+.nav{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; gap:var(--s4);
+  padding:var(--s3) var(--s5);
+  padding-top:max(var(--s3), env(safe-area-inset-top));
+  background:rgba(239,233,223,.84);
+  backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease;
+}
+.nav.scrolled{border-bottom-color:var(--line)}
+.brand{display:flex; align-items:center; gap:var(--s2); margin-right:auto}
+.brand-mark{width:26px; height:26px}
+.brand-name{font-size:19px; font-weight:600; letter-spacing:-.01em}
+.nav-links{display:none}
+
+/* ============================================================
+   buttons
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:var(--s2);
+  min-height:48px; padding:0 var(--s5);
+  border-radius:var(--r-sm);
+  font-size:16px; font-weight:600;
+  border:1px solid transparent;
+  cursor:pointer; white-space:nowrap;
+  transition:transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--blue); color:#FFFDF8}
+.btn-primary:hover{background:#1D3BB8}
+.btn-ghost{border-color:rgba(30,25,16,.3); color:var(--ink); background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.55)}
+.btn-sm{min-height:40px; padding:0 var(--s4); font-size:15px}
+
+.cta-row{display:flex; flex-wrap:wrap; gap:var(--s3); margin-top:var(--s6)}
+.center-row{justify-content:center}
+
+/* ============================================================
+   hero
+   ============================================================ */
+.hero{padding:var(--s7) 0 0; position:relative}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:var(--s2);
+  font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-2);
+}
+.dot{width:7px; height:7px; border-radius:50%; background:var(--gold)}
+
+.display{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(40px, 12vw, 76px);
+  line-height:1.02;
+  letter-spacing:-.02em;
+  margin-top:var(--s4);
+}
+.lede{margin-top:var(--s5); color:var(--ink-2); font-size:17px; max-width:46ch}
+
+.ticks{display:flex; flex-wrap:wrap; gap:var(--s3) var(--s5); margin-top:var(--s6);
+  font-size:14px; color:var(--ink-2)}
+.ticks li{display:flex; align-items:center; gap:var(--s2)}
+.ticks li::before{content:"✓"; color:var(--blue); font-weight:700}
+
+/* hero visual */
+.hero-visual{position:relative; margin-top:var(--s7); padding:0 var(--s5) var(--s8);
+  display:flex; justify-content:center}
+.phone{
+  position:relative; width:min(280px, 78vw);
+  border-radius:30px; padding:7px;
+  background:#211C15;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.1),   /* the polished edge of the frame */
+    0 30px 54px -30px rgba(40,32,20,.6);
+}
+/* side buttons: volume rocker on the left, power on the right */
+.phone::before,.phone::after{
+  content:""; position:absolute; width:3px; background:#1A1610; border-radius:0 2px 2px 0;
+}
+.phone::before{left:-3px; top:96px; height:76px}
+.phone::after{right:-3px; left:auto; top:120px; height:52px; border-radius:2px 0 0 2px}
+
+.phone-screen{
+  position:relative; border-radius:24px; overflow:hidden;
+  background:#0E1422; color:var(--on-dark);
+}
+.mapmock{width:100%; height:auto; display:block}
+.mapmock text{font-family:var(--sans); font-size:9px; fill:#B4C0D6}
+.mapmock .t-warn{font-size:8px; fill:#E4938F; letter-spacing:.04em}
+.route{stroke-dasharray:600; stroke-dashoffset:600; animation:draw 2.6s ease-out .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pulse{animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{r:8; opacity:.5} 100%{r:22; opacity:0}}
+
+/* status bar and camera cut-out */
+.phone-status{
+  position:absolute; top:0; left:0; right:0;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:9px 16px 0;
+  font-size:10.5px; font-weight:600; color:#C4CEE0;
+  text-shadow:0 1px 3px rgba(10,14,24,.9);
+}
+.status-ico{width:44px; height:12px; fill:currentColor; color:#C4CEE0}
+.phone-island{
+  position:absolute; top:7px; left:50%; transform:translateX(-50%);
+  width:66px; height:18px; border-radius:9px; background:#05070C;
+}
+
+/* bottom sheet */
+.phone-sheet{
+  position:absolute; left:0; right:0; bottom:0;
+  background:#111826;
+  border-top:1px solid var(--dark-line);
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+  padding:var(--s2) var(--s4) var(--s2);
+}
+.sheet-grip{
+  display:block; width:34px; height:3px; border-radius:2px;
+  background:rgba(255,255,255,.22); margin:0 auto var(--s3);
+}
+.sheet-head{display:flex; align-items:center; justify-content:space-between; gap:var(--s3)}
+.sheet-head strong{font-family:var(--serif); font-weight:400; font-size:21px}
+.sheet-sub{margin-top:2px; font-size:11.5px; color:#96A2B8}
+.sheet-hubs{margin-top:var(--s3); display:grid; gap:5px;
+  border-top:1px solid rgba(255,255,255,.08); padding-top:var(--s2)}
+.sheet-hubs li{display:flex; align-items:center; gap:7px; font-size:11px; color:#AEBACE}
+.sheet-hubs li::before{
+  content:""; width:6px; height:6px; border-radius:1px;
+  background:#57D8FF; flex:none;
+}
+.sheet-home{
+  display:block; width:88px; height:4px; border-radius:2px;
+  background:rgba(255,255,255,.3); margin:var(--s3) auto var(--s1);
+}
+
+.chip{
+  align-self:flex-start;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+  padding:3px var(--s2); border-radius:var(--r-xs);
+}
+.chip-safe{background:rgba(91,227,155,.16); color:#5BE39B}
+
+/* ============================================================
+   band
+   ============================================================ */
+.band{border-block:1px solid var(--line); background:var(--bg-alt); padding:var(--s7) 0}
+.band-label{
+  font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:var(--s4);
+}
+.band-text{font-family:var(--serif); font-size:clamp(21px,5.2vw,30px); line-height:1.35;
+  max-width:34ch}
+
+/* ============================================================
+   sections
+   ============================================================ */
+.section{padding:var(--s8) 0}
+.section-alt{background:var(--bg-alt); border-block:1px solid var(--line)}
+.h2{font-family:var(--serif); font-weight:400; font-size:clamp(30px,8vw,50px);
+  line-height:1.06; letter-spacing:-.02em}
+.sub{margin-top:var(--s4); color:var(--ink-2); max-width:52ch}
+.sub.center{margin-inline:auto}
+
+/* steps */
+.steps{margin-top:var(--s7); display:grid; gap:var(--s5)}
+.steps li{border-top:1px solid var(--line); padding-top:var(--s4)}
+.step-n{font-family:var(--mono); font-size:12px; color:var(--blue); letter-spacing:.1em}
+.steps h3{font-size:20px; margin:var(--s2) 0 var(--s2)}
+.steps p{color:var(--ink-2); font-size:15.5px}
+
+/* feature grid */
+.grid{margin-top:var(--s7); display:grid; gap:var(--s3)}
+.card{
+  background:var(--card); border:1px solid var(--line);
+  border-radius:var(--r-lg); padding:var(--s5);
+  transition:border-color .2s ease, transform .2s ease;
+}
+.card:hover{border-color:rgba(37,71,214,.4); transform:translateY(-2px)}
+.card-n{font-family:var(--mono); font-size:11px; color:var(--ink-3); letter-spacing:.08em}
+/* Icons are inline SVG. Inline rather than linked, so they still render when
+   the page is opened straight off disk with a file:// address. */
+.card-ico{
+  width:42px; height:42px; margin:var(--s4) 0 var(--s5);
+  fill:none; stroke:var(--blue); stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.card-ico .solid{fill:var(--blue); stroke:none}
+
+.card h3{font-family:var(--serif); font-weight:400; font-size:24px; letter-spacing:-.01em}
+.card p{margin-top:var(--s3); color:var(--ink-2); font-size:15.5px}
+
+/* split (hubs) */
+.split{display:grid; gap:var(--s7)}
+.split-text p{color:var(--ink-2); margin-top:var(--s5)}
+.checks{margin-top:var(--s5); display:grid; gap:var(--s3)}
+.checks li{display:flex; gap:var(--s3); color:var(--ink-2); font-size:15.5px}
+.checks li::before{content:"✓"; color:var(--blue); font-weight:700; flex:none}
+
+/* the hub card is a piece of the app, so it keeps the dark app skin */
+.hubcard{
+  background:var(--dark); color:var(--on-dark);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-lg); padding:var(--s5);
+  box-shadow:0 26px 44px -34px rgba(40,32,20,.75);
+}
+.hubcard .muted{color:var(--on-dark-2)}
+.hubcard-top{display:flex; align-items:center; justify-content:space-between; gap:var(--s3);
+  margin-bottom:var(--s4)}
+.badge{
+  font-size:12px; font-weight:600; padding:4px var(--s3);
+  border-radius:var(--r-xs);
+  background:transparent; border:1px solid rgba(255,255,255,.35); color:var(--on-dark);
+}
+.hubcard h4{font-family:var(--serif); font-weight:400; font-size:26px}
+.hubcard p{margin-top:var(--s2)}
+.hubcard-actions{display:flex; gap:var(--s2); margin-top:var(--s5)}
+.pill{
+  flex:1; text-align:center; padding:var(--s3); border-radius:var(--r-sm);
+  border:1px solid rgba(255,255,255,.22); font-size:14px; font-weight:600;
+  color:var(--on-dark-2);
+}
+.pill-solid{background:#3F6BE8; color:#FFFDF8; border-color:transparent}
+
+/* certified */
+.logos{
+  display:flex; flex-wrap:wrap; gap:var(--s3) var(--s5);
+  margin-top:var(--s7); padding-bottom:var(--s6);
+  border-bottom:1px solid var(--line);
+  font-family:var(--serif); font-size:19px; color:var(--ink-3);
+}
+.quote{margin-top:var(--s7)}
+.quote p{font-family:var(--serif); font-size:clamp(22px,5.6vw,34px); line-height:1.3;
+  max-width:24ch}
+
+/* ============================================================
+   get / qr — a dark panel, so the white QR code has real contrast
+   and the section works as a slide on its own
+   ============================================================ */
+.getbox{
+  border-radius:var(--r-lg);
+  background:var(--dark);
+  color:var(--on-dark);
+  padding:var(--s7) var(--s5);
+  text-align:center;
+}
+.getbox .h2 em{background:var(--grad-lit); -webkit-background-clip:text; background-clip:text}
+.getbox .sub{color:var(--on-dark-2)}
+.getbox .btn-primary{background:var(--on-dark); color:#17140F}
+.getbox .btn-primary:hover{background:#fff}
+.getbox .btn-ghost{border-color:rgba(255,255,255,.3); color:var(--on-dark)}
+.getbox .btn-ghost:hover{background:rgba(255,255,255,.08)}
+.qr{margin:var(--s7) 0 0; display:flex; flex-direction:column; align-items:center; gap:var(--s3)}
+.qr img{
+  width:min(220px,60vw); height:auto;
+  background:#fff; padding:var(--s4); border-radius:var(--r-sm);
+}
+.qr figcaption{font-family:var(--mono); font-size:12px; color:var(--on-dark-2); letter-spacing:.06em}
+
+/* ============================================================
+   footer
+   ============================================================ */
+.footer{border-top:1px solid var(--line); padding:var(--s8) 0 var(--s6)}
+.foot-grid{display:grid; gap:var(--s6)}
+.foot-grid h5{font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:var(--s3)}
+.foot-grid a{display:block; color:var(--ink-2); font-size:15px; padding:var(--s1) 0}
+.foot-grid a:hover{color:var(--ink)}
+/* wins over the .foot-grid a rule above, which would stack mark over wordmark */
+.foot-grid .brand{display:flex; margin-bottom:var(--s3)}
+.foot-bar{
+  margin-top:var(--s7); padding-top:var(--s5); border-top:1px solid var(--line);
+  display:flex; flex-wrap:wrap; gap:var(--s3); justify-content:space-between;
+  font-size:12.5px; color:var(--ink-3);
+}
+
+/* ============================================================
+   reveal on scroll
+   ============================================================ */
+.reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1; transform:none}
+
+/* ============================================================
+   larger screens
+   ============================================================ */
+@media (min-width:720px){
+  body{font-size:18px}
+  .hero{padding-top:var(--s8)}
+  .hero-visual{margin-top:var(--s8)}
+  .steps{grid-template-columns:repeat(3,1fr); gap:var(--s5)}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:2fr 1fr 1fr}
+  .band-text{max-width:40ch}
+  .getbox{padding:var(--s8) var(--s7)}
+}
+
+@media (min-width:1000px){
+  html{scroll-padding-top:88px}
+  /* line the nav up with the page gutter instead of the window edge */
+  .nav{padding-inline:var(--gutter)}
+  .nav-links{display:flex; gap:var(--s6); margin-inline:auto; font-size:15px; color:var(--ink-2)}
+  .nav-links a:hover{color:var(--ink)}
+  .brand{margin-right:var(--s7)}
+
+  .hero{display:grid; grid-template-columns:1.05fr .95fr; align-items:center;
+    gap:var(--s6); padding-block:var(--s9)}
+  .hero-inner{padding-left:var(--gutter)}
+  .hero-visual{margin-top:0; padding-bottom:0}
+  .phone{width:300px}
+  .display{font-size:clamp(56px,5.6vw,78px)}
+
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .split{grid-template-columns:1fr 1fr; align-items:center; gap:var(--s9)}
+  .split-media{order:2}
+  .section{padding:var(--s9) 0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important; transition:none !important}
+  .reveal{opacity:1; transform:none}
+  .route{stroke-dashoffset:0}
+}
