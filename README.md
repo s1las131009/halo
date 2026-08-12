@@ -131,6 +131,22 @@ A few deliberate choices, in case you're asked:
 - **No invented statistics or fake testimonials.** The one quote is presented as
   a statement of principle, not attributed to a real customer. If you find real
   research on street lighting and safety, cite it properly and add it.
+
+### Before you present: check the two survey figures
+
+The 90% / 99% figures in the opening section came from your slides and are
+labelled on the site as *"from the survey we ran for this project"*. Two things
+to confirm:
+
+1. **How many people did you actually survey?** Add the number — "of the 40
+   people we asked" is far stronger than a bare percentage, and it's the first
+   thing anyone will question.
+2. **Where did the 90% come from?** If it's your own survey, it's fine as
+   written. If it came from published research, cite that source instead —
+   presenting someone else's finding as your own survey is the kind of thing
+   that costs marks.
+
+Both live in `index.html`, in the section marked `PROBLEM`.
 - **Accessibility:** skip link, visible focus rings, alt text, and all animation
   turns itself off for anyone who has "reduce motion" enabled.
 - The QR generator in `tools/` was written from the QR spec rather than pulled
