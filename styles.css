@@ -101,7 +101,7 @@ em{font-family:var(--serif); font-style:italic}
   display:flex; align-items:center; gap:var(--s4);
   padding:var(--s3) var(--s5);
   padding-top:max(var(--s3), env(safe-area-inset-top));
-  background:rgba(239,233,223,.84);
+  background:rgba(239,233,223,.95);  /* near-solid: the dark sections show through a lighter bar */
   backdrop-filter:saturate(140%) blur(14px);
   -webkit-backdrop-filter:saturate(140%) blur(14px);
   border-bottom:1px solid transparent;
@@ -243,11 +243,33 @@ em{font-family:var(--serif); font-style:italic}
 /* ============================================================
    band
    ============================================================ */
-.band{border-block:1px solid var(--line); background:var(--bg-alt); padding:var(--s7) 0}
+.band{padding:var(--s7) 0}
 .band-label{
   font-family:var(--mono); font-size:11px; letter-spacing:.16em;
   text-transform:uppercase; color:var(--ink-3); margin-bottom:var(--s4);
 }
+
+/* ============================================================
+   dark sections — the same near-black as the phone screens and the
+   QR panel, used to break up the run of cream. Everything that sits
+   on the cream needs an answer here.
+   ============================================================ */
+.on-dark{
+  background:var(--dark); color:var(--on-dark);
+  border-block:1px solid rgba(255,255,255,.07);
+}
+.on-dark .sub,
+.on-dark .card p,
+.on-dark .muted{color:var(--on-dark-2)}
+.on-dark .band-label,
+.on-dark .card-n{color:#8B8175}
+/* the brighter sweep, so the italics don't sink into the dark */
+.on-dark .h2 em,
+.on-dark .band-text em{background:var(--grad-lit); -webkit-background-clip:text; background-clip:text}
+.on-dark .card{border-color:rgba(255,255,255,.12)}
+.on-dark .card:last-child{border-bottom-color:rgba(255,255,255,.12)}
+.on-dark .card-ico{stroke:#7FA0FF}
+.on-dark .card-ico .solid{fill:#7FA0FF}
 .band-text{font-family:var(--serif); font-size:clamp(21px,5.2vw,30px); line-height:1.35;
   max-width:34ch}
 
@@ -268,26 +290,29 @@ em{font-family:var(--serif); font-style:italic}
 .steps h3{font-size:20px; margin:var(--s2) 0 var(--s2)}
 .steps p{color:var(--ink-2); font-size:15.5px}
 
-/* feature grid */
-.grid{margin-top:var(--s7); display:grid; gap:var(--s3)}
+/* Feature grid. On a phone these are compact rows separated by hairlines —
+   six full-size cards is a lot of scrolling for very little information.
+   They become proper cards at 720px, where there's room for two abreast. */
+.grid{margin-top:var(--s6); display:grid; gap:0}
 .card{
-  background:var(--card); border:1px solid var(--line);
-  border-radius:var(--r-lg); padding:var(--s5);
+  display:grid; grid-template-columns:auto 1fr; column-gap:var(--s4); align-items:start;
+  padding:var(--s4) 0;
+  border-top:1px solid var(--line);
   transition:border-color .2s ease, transform .2s ease;
 }
-.card:hover{border-color:rgba(37,71,214,.4); transform:translateY(-2px)}
-.card-n{font-family:var(--mono); font-size:11px; color:var(--ink-3); letter-spacing:.08em}
+.card:last-child{border-bottom:1px solid var(--line)}
+.card-n{display:none; font-family:var(--mono); font-size:11px; color:var(--ink-3); letter-spacing:.08em}
 /* Icons are inline SVG. Inline rather than linked, so they still render when
    the page is opened straight off disk with a file:// address. */
 .card-ico{
-  width:42px; height:42px; margin:var(--s4) 0 var(--s5);
+  width:25px; height:25px; margin:3px 0 0; grid-row:1 / span 2;
   fill:none; stroke:var(--blue); stroke-width:1.8;
   stroke-linecap:round; stroke-linejoin:round;
 }
 .card-ico .solid{fill:var(--blue); stroke:none}
 
-.card h3{font-family:var(--serif); font-weight:400; font-size:24px; letter-spacing:-.01em}
-.card p{margin-top:var(--s3); color:var(--ink-2); font-size:15.5px}
+.card h3{font-family:var(--serif); font-weight:400; font-size:18.5px; letter-spacing:-.01em}
+.card p{margin-top:var(--s1); color:var(--ink-2); font-size:14.5px}
 
 /* split (hubs) */
 .split{display:grid; gap:var(--s7)}
@@ -430,7 +455,20 @@ em{font-family:var(--serif); font-style:italic}
   .hero{padding-top:var(--s8)}
   .hero-visual{margin-top:var(--s8)}
   .steps{grid-template-columns:repeat(3,1fr); gap:var(--s5)}
-  .grid{grid-template-columns:repeat(2,1fr)}
+  /* room for real cards from here up */
+  .grid{grid-template-columns:repeat(2,1fr); gap:var(--s3); margin-top:var(--s7)}
+  .card{
+    display:block; padding:var(--s5);
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg);
+  }
+  .card:hover{border-color:rgba(37,71,214,.4); transform:translateY(-2px)}
+  .on-dark .card{background:#251F18; border-color:rgba(255,255,255,.1)}
+  .on-dark .card:hover{border-color:rgba(127,160,255,.45)}
+  .card-n{display:block}
+  .card-ico{width:42px; height:42px; margin:var(--s4) 0 var(--s5)}
+  .card h3{font-size:24px}
+  .card p{margin-top:var(--s3); font-size:15.5px}
+
   .certified-split{grid-template-columns:1.1fr .9fr; align-items:center; gap:var(--s8)}
   .foot-grid{grid-template-columns:2fr 1fr 1fr}
   .band-text{max-width:40ch}
