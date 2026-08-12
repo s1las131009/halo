@@ -17,6 +17,31 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
+<!-- The Halo Certified seal, defined once and reused wherever it appears.
+     Drawn in currentColor so it works on the cream and on the dark panels;
+     the ring at its centre is the logo, which is why it keeps the gradient.
+     assets/certified-badge.svg is the same mark as a standalone file, for
+     handing to businesses. -->
+<svg class="sprite" aria-hidden="true" width="0" height="0">
+  <defs>
+    <path id="seal-arc-top" d="M13.5 60A46.5 46.5 0 0 1 106.5 60" fill="none"/>
+    <path id="seal-arc-bot" d="M11 60A49 49 0 0 0 109 60" fill="none"/>
+  </defs>
+  <symbol id="seal" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="60" cy="60" r="41" fill="none" stroke="currentColor" stroke-width=".9" opacity=".45"/>
+    <text class="seal-t" text-anchor="middle">
+      <textPath href="#seal-arc-top" startOffset="50%">HALO CERTIFIED</textPath>
+    </text>
+    <text class="seal-t" text-anchor="middle">
+      <textPath href="#seal-arc-bot" startOffset="50%">SAFETY HUB</textPath>
+    </text>
+    <circle cx="10.5" cy="60" r="2.2" fill="currentColor"/>
+    <circle cx="109.5" cy="60" r="2.2" fill="currentColor"/>
+    <circle cx="60" cy="60" r="24" fill="none" stroke="url(#halo-g)" stroke-width="7"/>
+  </symbol>
+</svg>
+
 <header class="nav" id="nav">
   <a class="brand" href="#top">
     <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
@@ -211,6 +236,7 @@
   <!-- ───────────────────────── HOW ───────────────────────── -->
   <section class="section" id="how">
     <div class="wrap">
+      <p class="band-label">01 — How it works</p>
       <h2 class="h2">Open it, walk, arrive.</h2>
       <p class="sub">Three taps at most. Designed for one cold hand and a dying battery.</p>
 
@@ -240,6 +266,7 @@
   <!-- ───────────────────────── FEATURES ───────────────────────── -->
   <section class="section section-alt" id="features">
     <div class="wrap">
+      <p class="band-label">02 — What's inside</p>
       <h2 class="h2">Everything for the walk home, <em>in one app.</em></h2>
 
       <div class="grid">
@@ -298,21 +325,85 @@
   <section class="section" id="hubs">
     <div class="wrap split">
       <div class="split-media">
-        <div class="hubcard">
-          <div class="hubcard-top">
-            <span class="badge">✓ Halo Certified</span>
-            <span class="muted small">Open until 02:00</span>
-          </div>
-          <h4>The Marlow Hotel</h4>
-          <p class="muted small">Reception staffed 24h · 120m away · step inside and staff are briefed</p>
-          <div class="hubcard-actions">
-            <span class="pill">Directions</span>
-            <span class="pill pill-solid">I'm heading there</span>
+        <div class="phone phone-hub" aria-hidden="true">
+          <div class="phone-screen">
+
+            <!-- a lit doorway, flat shapes only -->
+            <svg viewBox="0 0 260 150" class="hub-art" role="img" aria-label="A lit hotel doorway at night">
+              <rect width="260" height="150" fill="#0E1422"/>
+              <rect y="126" width="260" height="24" fill="#171F31"/>
+              <rect x="16" y="16" width="228" height="110" fill="#151E30"/>
+
+              <!-- upstairs windows, a few still awake -->
+              <g fill="#F0C36A">
+                <rect x="34" y="34" width="20" height="15" opacity=".5"/>
+                <rect x="66" y="34" width="20" height="15" opacity=".2"/>
+                <rect x="174" y="34" width="20" height="15" opacity=".45"/>
+                <rect x="206" y="34" width="20" height="15" opacity=".18"/>
+                <rect x="34" y="70" width="20" height="15" opacity=".22"/>
+                <rect x="206" y="70" width="20" height="15" opacity=".5"/>
+              </g>
+
+              <!-- light falling out of the door onto the pavement -->
+              <polygon points="110,124 150,124 178,150 82,150" fill="#FFDFA8" opacity=".3"/>
+
+              <!-- the doorway -->
+              <rect x="104" y="58" width="52" height="7" fill="#2B3852"/>
+              <rect x="110" y="65" width="40" height="61" fill="#C9973F"/>
+              <rect x="116" y="71" width="28" height="55" fill="#FFE0A8"/>
+              <rect x="129" y="94" width="2.5" height="9" fill="#8A6520"/>
+
+              <!-- the seal, in the window beside the door -->
+              <rect x="166" y="64" width="44" height="44" fill="#1D2740"/>
+              <g transform="translate(170,68) scale(.3)" class="art-seal">
+                <use href="#seal"/>
+              </g>
+            </svg>
+
+            <div class="phone-status">
+              <span>23:43</span>
+              <svg viewBox="0 0 44 12" class="status-ico" aria-hidden="true">
+                <rect x="0" y="7" width="2.4" height="4" rx=".6"/>
+                <rect x="3.8" y="5" width="2.4" height="6" rx=".6"/>
+                <rect x="7.6" y="3" width="2.4" height="8" rx=".6"/>
+                <rect x="11.4" y="1" width="2.4" height="10" rx=".6"/>
+                <path d="M18.5 5.4a6.2 6.2 0 0 1 7.6 0" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                <path d="M20.6 7.9a3 3 0 0 1 3.4 0" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                <circle cx="22.3" cy="10.2" r="1"/>
+                <rect x="30" y="2.6" width="12" height="7" rx="1.8" fill="none" stroke="currentColor"/>
+                <rect x="31.3" y="3.9" width="6.6" height="4.4" rx=".8"/>
+                <rect x="42.7" y="4.6" width="1.3" height="3" rx=".6"/>
+              </svg>
+            </div>
+            <div class="phone-island"></div>
+
+            <div class="hub-detail">
+              <div class="hub-detail-top">
+                <div>
+                  <h4>The Marlow Hotel</h4>
+                  <p class="muted small">120 m away · on your route</p>
+                </div>
+                <svg class="seal seal-sm"><use href="#seal"/></svg>
+              </div>
+
+              <ul class="hub-facts">
+                <li><span class="fact-k">Reception</span> staffed 24 hours</li>
+                <li><span class="fact-k">Open</span> until 02:00 tonight</li>
+                <li><span class="fact-k">Staff</span> trained on the Halo protocol</li>
+              </ul>
+
+              <div class="hubcard-actions">
+                <span class="pill">Directions</span>
+                <span class="pill pill-solid">Heading there</span>
+              </div>
+              <span class="sheet-home"></span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="split-text">
+        <p class="band-label">03 — Safety hubs</p>
         <h2 class="h2">A door you can always <em>walk through.</em></h2>
         <p>
           A safety hub is a real place with real people. When someone opens the door
@@ -333,12 +424,33 @@
   <!-- ───────────────────────── CERTIFIED ───────────────────────── -->
   <section class="section section-alt" id="certified">
     <div class="wrap">
+      <p class="band-label">04 — For business</p>
       <h2 class="h2">Halo Certified — <em>good for them too.</em></h2>
-      <p class="sub">
-        Becoming a hub costs a business nothing but a short staff training. In return
-        they get a badge on the map, in their window, and in front of exactly the
-        customers who choose a place because it feels safe.
-      </p>
+
+      <div class="certified-split">
+        <div>
+          <p class="sub">
+            Becoming a hub costs a business nothing but a short staff training. In
+            return they get a badge on the map, in their window, and in front of
+            exactly the customers who choose a place because it feels safe.
+          </p>
+          <ul class="checks certified-checks">
+            <li>A window decal that says, plainly, that this is somewhere you can go</li>
+            <li>A pin on every route Halo draws through the neighbourhood</li>
+            <li>No fee, no equipment — a briefing and a printed protocol by the till</li>
+          </ul>
+        </div>
+
+        <!-- the decal itself: what a certified hub puts on its door -->
+        <figure class="decal">
+          <svg class="seal seal-lg"><use href="#seal"/></svg>
+          <figcaption>
+            <strong>This is a Halo safety hub</strong>
+            <span>If you feel unsafe, come in. Staff here know what to do.</span>
+          </figcaption>
+          <span class="decal-foot">halo · certified until 2027</span>
+        </figure>
+      </div>
 
       <div class="logos" aria-label="Types of businesses that can become safety hubs">
         <span>Hotels</span><span>Restaurants</span><span>Cafés</span>

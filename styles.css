@@ -291,29 +291,29 @@ em{font-family:var(--serif); font-style:italic}
 
 /* split (hubs) */
 .split{display:grid; gap:var(--s7)}
+.split-media{order:2}   /* heading leads on mobile; the media column moves right at 1000px */
 .split-text p{color:var(--ink-2); margin-top:var(--s5)}
 .checks{margin-top:var(--s5); display:grid; gap:var(--s3)}
 .checks li{display:flex; gap:var(--s3); color:var(--ink-2); font-size:15.5px}
 .checks li::before{content:"✓"; color:var(--blue); font-weight:700; flex:none}
 
-/* the hub card is a piece of the app, so it keeps the dark app skin */
-.hubcard{
-  background:var(--dark); color:var(--on-dark);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--r-lg); padding:var(--s5);
-  box-shadow:0 26px 44px -34px rgba(40,32,20,.75);
+/* second app screen: the hub detail */
+.phone-hub{margin-inline:auto}
+.hub-art{width:100%; height:auto; display:block}
+.hub-detail{background:#111826; padding:var(--s4) var(--s4) var(--s2); color:var(--on-dark)}
+.hub-detail .muted{color:var(--on-dark-2)}
+.hub-detail-top{display:flex; align-items:flex-start; justify-content:space-between; gap:var(--s3)}
+.hub-detail h4{font-family:var(--serif); font-weight:400; font-size:23px}
+.hub-detail-top p{margin-top:2px}
+.hub-facts{
+  margin-top:var(--s4); display:grid; gap:6px;
+  border-top:1px solid rgba(255,255,255,.09); padding-top:var(--s3);
+  font-size:12px; color:#AEBACE;
 }
-.hubcard .muted{color:var(--on-dark-2)}
-.hubcard-top{display:flex; align-items:center; justify-content:space-between; gap:var(--s3);
-  margin-bottom:var(--s4)}
-.badge{
-  font-size:12px; font-weight:600; padding:4px var(--s3);
-  border-radius:var(--r-xs);
-  background:transparent; border:1px solid rgba(255,255,255,.35); color:var(--on-dark);
-}
-.hubcard h4{font-family:var(--serif); font-weight:400; font-size:26px}
-.hubcard p{margin-top:var(--s2)}
-.hubcard-actions{display:flex; gap:var(--s2); margin-top:var(--s5)}
+.fact-k{display:inline-block; min-width:74px; color:#7C8AA3}
+
+.hubcard-actions{display:flex; gap:var(--s2); margin-top:var(--s4)}
+.hub-detail .pill{font-size:13px; white-space:nowrap; padding:var(--s3) var(--s2)}
 .pill{
   flex:1; text-align:center; padding:var(--s3); border-radius:var(--r-sm);
   border:1px solid rgba(255,255,255,.22); font-size:14px; font-weight:600;
@@ -321,7 +321,50 @@ em{font-family:var(--serif); font-style:italic}
 }
 .pill-solid{background:#3F6BE8; color:#FFFDF8; border-color:transparent}
 
+/* ============================================================
+   the Halo Certified seal
+   ============================================================ */
+.sprite{position:absolute; width:0; height:0; overflow:hidden}
+.seal-t{
+  font-family:var(--sans); font-size:11.5px; font-weight:700;
+  letter-spacing:1.7px; fill:currentColor;
+}
+.seal{display:block; color:var(--ink)}
+.seal-sm{width:44px; height:44px; flex:none; color:#C9973F}
+.seal-lg{width:118px; height:118px; margin:0 auto}
+.art-seal{color:#C9973F}
+
 /* certified */
+.certified-split{display:grid; gap:var(--s7); margin-top:var(--s5)}
+.certified-checks{margin-top:var(--s5)}
+
+/* the window decal a certified hub puts on its door */
+.decal{
+  margin:0; align-self:start; justify-self:center;
+  max-width:330px; width:100%;
+  background:var(--card); border:1px solid rgba(30,25,16,.22);
+  border-radius:var(--r-lg);
+  padding:var(--s6) var(--s5) var(--s4);
+  text-align:center;
+  transform:rotate(-1.4deg);
+  box-shadow:0 18px 30px -26px rgba(40,32,20,.7);
+}
+.decal figcaption{display:block; margin-top:var(--s4)}
+.decal strong{
+  display:block; font-family:var(--serif); font-weight:400; font-size:23px;
+  letter-spacing:-.01em;
+}
+.decal figcaption span{
+  display:block; margin-top:var(--s2); font-size:14px; color:var(--ink-2);
+  max-width:26ch; margin-inline:auto;
+}
+.decal-foot{
+  display:block; margin-top:var(--s5); padding-top:var(--s3);
+  border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+
 .logos{
   display:flex; flex-wrap:wrap; gap:var(--s3) var(--s5);
   margin-top:var(--s7); padding-bottom:var(--s6);
@@ -388,6 +431,7 @@ em{font-family:var(--serif); font-style:italic}
   .hero-visual{margin-top:var(--s8)}
   .steps{grid-template-columns:repeat(3,1fr); gap:var(--s5)}
   .grid{grid-template-columns:repeat(2,1fr)}
+  .certified-split{grid-template-columns:1.1fr .9fr; align-items:center; gap:var(--s8)}
   .foot-grid{grid-template-columns:2fr 1fr 1fr}
   .band-text{max-width:40ch}
   .getbox{padding:var(--s8) var(--s7)}
@@ -410,7 +454,6 @@ em{font-family:var(--serif); font-style:italic}
 
   .grid{grid-template-columns:repeat(3,1fr)}
   .split{grid-template-columns:1fr 1fr; align-items:center; gap:var(--s9)}
-  .split-media{order:2}
   .section{padding:var(--s9) 0}
 }
 
